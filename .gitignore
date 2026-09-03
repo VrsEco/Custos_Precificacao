@@ -28,3 +28,9 @@ Thumbs.db
 # Outputs locais
 outputs/
 *.log
+
+# Dados reais da empresa (planilhas legadas, exports) - nunca commitar
+# Contêm dados sensíveis (nomes/salários de funcionários, preços reais de insumo)
+Planilhas/
+*.xlsm
+*.xlsx
