@@ -1,0 +1,7 @@
+# Dependências da Fase 2/3 (ambientes de teste e produção com PostgreSQL).
+# Não instalar ainda na Fase 1 — mantido aqui só para não perder a decisão.
+# Quando o Postgres de teste for provisionado: pip install -r requirements-db.txt
+# e rodar `alembic init migrations` (a pasta migrations/ já existe como placeholder).
+sqlalchemy==2.0.35
+psycopg2-binary==2.9.9
+alembic==1.13.3
