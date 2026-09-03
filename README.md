@@ -7,6 +7,28 @@ python -m venv .venv
 .venv\Scripts\activate
 pip install -e . -r requirements.txt
 copy .env.example .env
+```
+
+A partir do motor de custeio (schema + cálculo + CLI), o projeto passou a depender de um Postgres local. Antes de rodar os testes:
+
+1. Tenha um PostgreSQL rodando localmente.
+2. Crie uma role e um banco dedicados ao projeto (não use o superusuário `postgres` direto):
+   ```sql
+   CREATE ROLE custos_precificacao WITH LOGIN PASSWORD 'escolha_uma_senha' NOSUPERUSER NOCREATEDB NOCREATEROLE;
+   CREATE DATABASE custos_precificacao_dev OWNER custos_precificacao;
+   ```
+3. Ajuste `DATABASE_URL` no `.env` com o usuário/senha/porta que você criou:
+   ```
+   DATABASE_URL=postgresql+psycopg2://custos_precificacao:SENHA@localhost:5432/custos_precificacao_dev
+   ```
+4. Rode as migrations para criar o schema:
+   ```bash
+   python -m alembic upgrade head
+   ```
+
+Só então rode os testes:
+
+```bash
 pytest
 ```
 
